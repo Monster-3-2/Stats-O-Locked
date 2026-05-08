@@ -39,8 +39,8 @@ const HeroCanvas = lazy(() => import('./HeroCanvas'));
       </Sphere>
 
       {/* Point light inside */}
-      <pointLight position={[0, 0, 0]} color="#7c3aed" intensity={5} distance={8} />
-      <pointLight position={[2, 2, 2]} color="#00f0ff" intensity={2} distance={6} />
+      <pointLight position={[0, 0, 0]} color="#7c3aed" intensity={5} decay={2} />
+      <pointLight position={[2, 2, 2]} color="#00f0ff" intensity={2} decay={2} />
     </group>
   );
 }
