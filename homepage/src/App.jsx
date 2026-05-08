@@ -143,7 +143,11 @@ export default function App() {
     <div style={{ minHeight: '100vh', background: '#020b16' }}>
       {/* Animated cursor glow */}
       <CursorGlow />
-      <RobotAssistant />
+      {showRobot && (
+        <Suspense fallback={null}>
+          <RobotAssistant />
+        </Suspense>
+      )}
 
       {/* Intro overlay */}
       <AnimatePresence>
