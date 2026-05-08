@@ -12,7 +12,8 @@ import Leaderboard from './pages/Leaderboard';
 import Footer from './components/Footer';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import CursorGlow from './components/CursorGlow';
-import RobotAssistant from './components/RobotAssistant';
+import { lazy, Suspense } from 'react'; // already importing useState, useEffect
+const RobotAssistant = lazy(() => import('./components/RobotAssistant'));
 
 // Intro overlay text animation
 const statuses = [
@@ -127,10 +128,16 @@ function IntroOverlay({ onDone }) {
 }
 
 export default function App() {
-  // Show intro only once per browser session, never to PageSpeed bots
-  const [introVisible, setIntroVisible] = useState(
-    () => !sessionStorage.getItem('sol_intro_seen')
-  );
+  const [introVisible, setIntroVisible] = useState(/* your fix 2 code */);
+  const [showRobot, setShowRobot] = useState(false); // ADD THIS
+
+  // ADD THIS effect — mount robot 5s after page load
+  useEffect(() => {
+    const t = setTimeout(() => setShowRobot(true), 5000);
+    return () => clearTimeout(t);
+  }, []);
+  
+  // rest of your code...
 
   return (
     <div style={{ minHeight: '100vh', background: '#020b16' }}>
