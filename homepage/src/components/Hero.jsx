@@ -1,10 +1,8 @@
 import { useRef, useMemo, useState, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Points, PointMaterial, MeshDistortMaterial, Sphere, Html } from '@react-three/drei';
-import * as THREE from 'three';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
-
+import { lazy, Suspense, useRef, useState, useEffect } from 'react'; // add lazy, Suspense
+const HeroCanvas = lazy(() => import('./HeroCanvas'));
 // Particle stars background
 function Stars() {
   const ref = useRef();
