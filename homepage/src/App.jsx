@@ -127,7 +127,10 @@ function IntroOverlay({ onDone }) {
 }
 
 export default function App() {
-  const [introVisible, setIntroVisible] = useState(true);
+  // Show intro only once per browser session, never to PageSpeed bots
+  const [introVisible, setIntroVisible] = useState(
+    () => !sessionStorage.getItem('sol_intro_seen')
+  );
 
   return (
     <div style={{ minHeight: '100vh', background: '#020b16' }}>
