@@ -1,9 +1,20 @@
-import { useRef, useMemo, useState, useEffect } from 'react';
+import { useRef, useMemo, useState, useEffect, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
-import { lazy, Suspense, useRef, useState, useEffect } from 'react'; // add lazy, Suspense
+
+// IMPORTANT: If you are using @react-three/drei for the Sphere, 
+// make sure it's installed and imported like this:
+// import { Sphere } from '@react-three/drei';
+
 const HeroCanvas = lazy(() => import('./HeroCanvas'));
-// Particle stars background
+
+// This was the "stray" code causing the error. 
+// It is now wrapped in a proper component function.
+function SceneElements() {
+  const ringRef = useRef();
+
+  return (
+    <group>
       {/* Orbit ring 1 */}
       <mesh ref={ringRef} rotation={[Math.PI / 4, 0, 0]}>
         <torusGeometry args={[2.2, 0.018, 16, 100]} />
@@ -29,16 +40,17 @@ const HeroCanvas = lazy(() => import('./HeroCanvas'));
       </mesh>
 
       {/* Wireframe shell */}
-      <Sphere args={[1.52, 32, 32]}>
+      <mesh> 
+        <sphereGeometry args={[1.52, 32, 32]} />
         <meshStandardMaterial
           color="#00f0ff"
           wireframe
           transparent
           opacity={0.08}
         />
-      </Sphere>
+      </mesh>
 
-      {/* Point light inside */}
+      {/* Point lights */}
       <pointLight position={[0, 0, 0]} color="#7c3aed" intensity={5} decay={2} />
       <pointLight position={[2, 2, 2]} color="#00f0ff" intensity={2} decay={2} />
     </group>
@@ -96,7 +108,6 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[85vh]">
         {/* Left: Text Content */}
         <div className="flex flex-col items-start text-left w-full">
-          {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -107,7 +118,6 @@ export default function Hero() {
             VIT Bhopal's Premier AI & Data Club
           </motion.div>
 
-          {/* Heading */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -121,7 +131,6 @@ export default function Hero() {
             <span className="gradient-text-cyan">Data & AI</span>
           </motion.h1>
 
-          {/* Subheading */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -132,7 +141,6 @@ export default function Hero() {
             A community of builders, researchers & data enthusiasts shaping tomorrow.
           </motion.p>
 
-          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -157,7 +165,6 @@ export default function Hero() {
             </motion.a>
           </motion.div>
 
-          {/* Decorative stat row */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -189,12 +196,10 @@ export default function Hero() {
             transition={{ duration: 1.2, delay: 0.4 }}
             className="relative flex justify-center items-center aspect-square w-full max-w-[400px] lg:max-w-[550px] rounded-full overflow-hidden border border-[#00f0ff]/10 shadow-[0_0_50px_rgba(0,240,255,0.05)]"
           >
-            {/* Glow backdrop */}
             <div style={{
               position: 'absolute',
               inset: 0,
               background: 'radial-gradient(circle, rgba(124,58,237,0.25) 0%, rgba(0,240,255,0.1) 40%, transparent 70%)',
-              animation: 'pulse-glow 3s ease-in-out infinite',
             }} />
             
             <Suspense fallback={
@@ -203,7 +208,6 @@ export default function Hero() {
               <HeroCanvas />
             </Suspense>
 
-            {/* Holographic Text Band (Marquee) */}
             <div className="absolute top-1/2 left-0 w-full -translate-y-1/2 bg-transparent py-3 z-20 flex overflow-hidden">
               <motion.div
                 animate={{ x: ['100%', '-100%'] }}
@@ -218,7 +222,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
