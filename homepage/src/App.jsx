@@ -141,7 +141,10 @@ export default function App() {
       {/* Intro overlay */}
       <AnimatePresence>
         {introVisible && (
-          <IntroOverlay onDone={() => setIntroVisible(false)} />
+          <IntroOverlay onDone={() => {
+            sessionStorage.setItem('sol_intro_seen', '1');
+            setIntroVisible(false);
+          }} />
         )}
       </AnimatePresence>
 
