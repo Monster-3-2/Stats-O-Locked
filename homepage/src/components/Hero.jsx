@@ -1,6 +1,7 @@
 import { useRef, useMemo, useState, useEffect, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 // IMPORTANT: If you are using @react-three/drei for the Sphere, 
 // make sure it's installed and imported like this:
