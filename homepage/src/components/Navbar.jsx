@@ -112,6 +112,9 @@ export default function Navbar() {
           <button
             className="md:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav-menu"
             style={{
               background: 'none',
               border: 'none',
