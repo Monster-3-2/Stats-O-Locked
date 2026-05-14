@@ -148,22 +148,24 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.65 }}
             className="flex flex-row gap-4 flex-wrap"
           >
-            <motion.a
-              href="../contact.html"
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+            <Link
+              to="/contact"
               className="btn-neon btn-neon-primary no-underline"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
             >
               Join Us <ArrowRight size={16} />
-            </motion.a>
-            <motion.a
-              href="../events.html"
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+            <Link
+              to="/events"
               className="btn-neon btn-neon-secondary no-underline"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
             >
               Explore Projects
-            </motion.a>
+            </Link>
+          </motion.div>
           </motion.div>
 
           <motion.div
