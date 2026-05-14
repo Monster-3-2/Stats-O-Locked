@@ -128,14 +128,19 @@ function IntroOverlay({ onDone }) {
 }
 
 export default function App() {
-  const [introVisible, setIntroVisible] = useState(/* your fix 2 code */);
-  const [showRobot, setShowRobot] = useState(false); // ADD THIS
+  const [introVisible, setIntroVisible] = useState(true);
+  const [showRobot, setShowRobot] = useState(false);
 
-  // ADD THIS effect — mount robot 5s after page load
   useEffect(() => {
     const t = setTimeout(() => setShowRobot(true), 5000);
     return () => clearTimeout(t);
   }, []);
+
+  return (
+    <div style={{ minHeight: '100vh', background: '#020b16' }}>
+      {/* Animated cursor glow */}
+      <CursorGlow />
+      {showRobot && <RobotAssistant />}
   
   // rest of your code...
 
