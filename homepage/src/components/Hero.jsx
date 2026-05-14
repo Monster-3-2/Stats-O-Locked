@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 // make sure it's installed and imported like this:
 // import { Sphere } from '@react-three/drei';
 
-const HeroCanvas = lazy(() => import('./HeroCanvas'));
+
 
 // This was the "stray" code causing the error. 
 // It is now wrapped in a proper component function.
