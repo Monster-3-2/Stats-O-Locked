@@ -60,7 +60,19 @@ function SceneElements() {
     </group>
   );
 }
-
+function HeroCanvas() {
+  return (
+    <Canvas
+      camera={{ position: [0, 0, 6], fov: 55 }}
+      style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}
+      gl={{ antialias: true, alpha: true }}
+    >
+      <ambientLight intensity={0.3} />
+      <directionalLight position={[5, 5, 5]} intensity={0.8} color="#ffffff" />
+      <SceneElements />
+    </Canvas>
+  );
+}
 export default function Hero() {
   return (
     <section
