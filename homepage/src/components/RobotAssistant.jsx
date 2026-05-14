@@ -72,6 +72,9 @@ export default function RobotAssistant() {
       className="fixed bottom-6 right-6 z-[100] flex flex-col items-center cursor-pointer group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      role="complementary"
+      aria-label="Statsy the page assistant"
+      aria-live="polite"
     >
       {/* Speech Bubble */}
       <div className="w-48 bg-[#0B132B] border border-[#00f0ff] rounded-2xl p-3 mb-6 relative shadow-[0_0_10px_#00f0ff] text-sm text-[#e0e7ff] font-sans leading-relaxed min-h-[70px]">
