@@ -2,6 +2,9 @@ import { useRef, useMemo, useState, useEffect, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Points, PointMaterial, MeshDistortMaterial, Sphere } from '@react-three/drei';
+import * as THREE from 'three';
 
 // IMPORTANT: If you are using @react-three/drei for the Sphere, 
 // make sure it's installed and imported like this:
